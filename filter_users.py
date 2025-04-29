@@ -1,22 +1,32 @@
 import json
 
+
 def filter_users_by_name(data, name):
-    filtered_users = [user for user in data if user['name'].lower() == name.lower()]
+    filtered_users = [
+        user for user in data if user['name'].lower() == name.lower()
+    ]
     return filtered_users
+
 
 def filter_users_by_age(data, age):
     filtered_users = [user for user in data if user['age'] == int(age)]
     return filtered_users
 
+
 def filter_users_by_email(data, email):
-    filtered_users = [user for user in data if user['email'].lower() == email.lower()]
+    filtered_users = [
+        user for user in data if user['email'].lower() == email.lower()
+    ]
     return filtered_users
+
 
 if __name__ == "__main__":
     with open("users.json", "r") as file:
         user_data = json.load(file)
 
-    filter_option = input("What would you like to filter by? ('name', 'age', 'email'): ").strip().lower()
+    filter_option = input(
+        "What would you like to filter by? ('name', 'age', 'email'): "
+    ).strip().lower()
 
     filtered_results = []
     if filter_option == "name":
@@ -37,8 +47,10 @@ if __name__ == "__main__":
     if filtered_results:
         print("\nFiltered Users:")
         for user in filtered_results:
-            print(f"- {user['name']} (ID: {user['id']}, Age: {user['age']}, Email: {user['email']})")
+            print(
+                f"- {user['name']} (ID: {user['id']}, Age: {user['age']}, "
+                f"Email: {user['email']})"
+            )
     else:
         if filter_option in ["name", "age", "email"]:
             print("\nNo users found matching your criteria.")
-
